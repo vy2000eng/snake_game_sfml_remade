@@ -96,10 +96,36 @@ void Snake::move(int direction) {
      * */
     SnakeSegment* segment = new SnakeSegment;
     segment->next =nullptr, segment->prev = nullptr;
-    segment->pos = sf::Vector2f (head->pos.x+0.f, head->pos.y+30.f);
+
+//    enum Direction{
+//        left,right,up,down
+//    };
+
+
+    switch (direction) {
+        case 0://left
+            segment->pos = sf::Vector2f (head->pos.x-30.f, head->pos.y);
+            break;
+        case 1://right
+            segment->pos = sf::Vector2f (head->pos.x+30.f, head->pos.y);
+
+            break;
+        case 2://up
+            segment->pos = sf::Vector2f (head->pos.x, head->pos.y-30.f);
+
+            break;
+        case 3://down
+            segment->pos = sf::Vector2f (head->pos.x+0.f, head->pos.y+30.f);
+
+            break;
+
+
+
+    }
     this->pre_pend(segment);
     tail = tail->prev;
     tail->next = nullptr;
+
 
 
 

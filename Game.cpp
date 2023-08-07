@@ -80,6 +80,8 @@ void Game::initialize_variables() {
     this->snake.add_segment(start.pos);
     this->start.pos = sf::Vector2f (80.f, 0.f);
     this->snake.add_segment(start.pos);
+    this->start.pos = sf::Vector2f (110.f, 0.f);
+    this->snake.add_segment(start.pos);
 
     // this->snake.add_segment();
 
