@@ -76,9 +76,12 @@ void Game::initialize_variables() {
     this->window = nullptr;
     this->dir = Direction::down;
     this->direction = 0;
-    this->start.pos = sf::Vector2f (20.f, 20.f);
+    this->start.pos = sf::Vector2f (55.f, 0.f);
     this->snake.add_segment(start.pos);
-   // this->snake.add_segment();
+    this->start.pos = sf::Vector2f (80.f, 0.f);
+    this->snake.add_segment(start.pos);
+
+    // this->snake.add_segment();
 
 
 
@@ -87,8 +90,8 @@ void Game::initialize_variables() {
 }
 
 void Game::initialize_window() {
-    this->vm.width = 800;
-    this->vm.height = 600;
+    this->vm.width = 1000;
+    this->vm.height = 800;
     this->window = new sf::RenderWindow(this->vm, "Snake Game");
     this->window->setFramerateLimit(60);
 
@@ -103,7 +106,39 @@ void Game::render_snake() {
 }
 
 void Game::update_snake() {
-    this->snake.move(0);
+
+    if(this->snake_spawn_timer >= 12){
+        this->snake_spawn_timer = 0;
+        switch (dir) {
+            case down:
+
+                this->snake.move(down);
+                break;
+            case up:
+                this->snake.move(up);
+                break;
+            case left:
+                this->snake.move(left);
+                break;
+            case right:
+                this->snake.move(right);
+                break;
+
+            default:
+                break;
+        }
+    }else{
+        snake_spawn_timer++;
+    }
+
+
+
+//    if(this->snake_spawn_timer >=12){
+//        snake_spawn_timer = 0;
+//        this->snake.move(0);
+//    }else{
+//        snake_spawn_timer++;
+//    }
 
 //    switch(dir){
 //        case down:
