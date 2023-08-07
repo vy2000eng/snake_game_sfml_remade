@@ -6,6 +6,8 @@
 #define SNAKE_GAME_SFML_REMADE_GAME_H
 #include "SFML/Graphics.hpp"
 #include "Snake.h"
+#define SNAKE_SPAWN_TIMER_MAX = 10
+
 
 
 class Game {
@@ -23,6 +25,7 @@ private:
     int direction;
     Snake snake;
     SnakeSegment start;
+    int snake_spawn_timer;
 
 
 

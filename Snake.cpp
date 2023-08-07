@@ -8,34 +8,53 @@
 
 
 void Snake::add_segment(sf::Vector2f pos) {
+    /* Description:
+     * - creates a new segment
+     * - sets the size of the segment
+     * - sets the color of the segment
+     * - sets the position of the segment
+     * - connects pointers
+     * */
     SnakeSegment *segment = new SnakeSegment;
     segment->snake.setSize(sf::Vector2f( segment_length,segment_width));
     segment->snake.setFillColor(color);
     segment->pos =  pos;
-//    printf("%f \n ", this->tail->pos.x+25.f);
-//    printf("%f \n ", this->tail->pos.y+25.f);
-    tail->next = segment;
-    tail = segment;
-
+    if(head->next == nullptr){
+        head->next = segment;
+        segment->prev = head;
+        tail = segment;
+    }else{
+        segment->prev = tail;
+        tail->next = segment;
+        tail= segment;
+    }
 }
 
 
 
 
 Snake::Snake() {
+
+    /* CONSTRUCTOR FOR THE SNAKE CLASS. Called inside the game class.
+     * initializes:
+     *  - head,
+     *  - segment_length,
+     *  - position,
+     *  - size
+     *  - next
+     *  what it does:
+     *  - points head to the first node
+     *  - points tail to the first node
+     *  - points next and prev to the first node, because there is only one node currently
+     *
+     * */
     this->head = new SnakeSegment;
     color = sf::Color::Magenta;
     this->segment_length = 25.f;
     this->segment_width = 25.f;
-    //head->pos = sf::Vector2f (20.f,20.f);
-
-    head->snake.setSize(sf::Vector2f (segment_length, segment_width));
-    head->pos = sf::Vector2f (20.f, 20.f);
-   // head->snake.setPosition(head->pos);
+    head->pos = sf::Vector2f (20.f,20.f);
     head->next = nullptr;
-    this->move_speed = 1.f;
-    this->tail = head;
-
+    tail = head;
 
 }
 
@@ -47,6 +66,9 @@ Snake::~Snake() {
         delete temp;
 
     }
+    this->head = nullptr;
+    this->tail = nullptr;
+
 
 }
 
@@ -65,75 +87,63 @@ void Snake::draw(sf::RenderWindow *window) {
 }
 
 void Snake::move(int direction) {
-    SnakeSegment * temp = this->head;
-    sf::Vector2f new_pos = sf::Vector2f (temp->pos.x+25, temp->pos.y+25);
+    /**
+     * Description:
+     *  - creates a new segment and makes it the head pointer
+     *  - adds the new segment to the front of the snake
+     *  - reassigns the tail to tail->prev
+     *  - deletes the tail
+     * */
+    SnakeSegment* segment = new SnakeSegment;
+    segment->next =nullptr, segment->prev = nullptr;
 
-    if(this->head == this->tail){
-        temp->pos.x+=0.f;
-        temp->pos.y+=1.f;
-
-
-        head = tail;
-        tail = temp;
-    }else{
-        switch (direction) {
-            case 0:
-                // |head| -> |next| -> |tail|
-                //this->head->pos = sf::Vector2f (temp->pos.x+25, temp->pos.y+25);
-                //sf::Vector2f new_pos = sf::Vector2f (temp->pos.x+25, temp->pos.y+25);
-                add_segment(new_pos);
-                head = tail;
+//    enum Direction{
+//        left,right,up,down
+//    };
 
 
+    switch (direction) {
+        case 0://left
+            segment->pos = sf::Vector2f (head->pos.x-30.f, head->pos.y);
+            break;
+        case 1://right
+            segment->pos = sf::Vector2f (head->pos.x+30.f, head->pos.y);
 
-//                head = tail;
-//                head->next = temp;
-//                tail = nullptr;
+            break;
+        case 2://up
+            segment->pos = sf::Vector2f (head->pos.x, head->pos.y-30.f);
 
+            break;
+        case 3://down
+            segment->pos = sf::Vector2f (head->pos.x+0.f, head->pos.y+30.f);
 
-
-
-
-
-//                head = tail;
-//                tail = temp;
-//                head->next = temp;
-//                tail->next = nullptr;
-
-
-//
-//                tail->pos.x += 0.f;
-//               tail->pos.y += 1.f;
+            break;
 
 
-                break;
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
 
-        }
     }
+    this->pre_pend(segment);
+    tail = tail->prev;
+    tail->next = nullptr;
 
-//    switch (direction) {
-//        case 0:
-//            break;
-//        case 1:
-//            break;
-//        case 2:
-//            break;
-//        case 3:
-//            break;
-//
-//
-//
-//
-//    }
+
+
+
+    //sf::Vector2f new_pos = sf::Vector2f (temp->pos.x+25, temp->pos.y+25);
+
+
+
 
 }
 
-void Snake::intialize_snake() {
+void Snake::pre_pend(SnakeSegment *segment) {
+   head->prev = segment;
+   segment->next= head;
+
+   head= segment;
+
 
 }
+
+
+
