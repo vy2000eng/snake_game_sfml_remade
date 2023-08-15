@@ -38,9 +38,13 @@ public:
     //destructor
     ~Snake();
 
+
+    SnakeSegment *getHead() const;
+
+
     // methods
     void draw(sf::RenderWindow *window);
-    void move(int direction);
+    void move(int direction,sf::RenderWindow *window) ;
     void add_segment(sf::Vector2f pos);
     void pre_pend(SnakeSegment* segment);
 

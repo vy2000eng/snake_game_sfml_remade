@@ -4,7 +4,7 @@
 
 #include "Snake.h"
 #include <stdio.h>
-
+#include <iostream>
 
 
 void Snake::add_segment(sf::Vector2f pos) {
@@ -86,7 +86,7 @@ void Snake::draw(sf::RenderWindow *window) {
 
 }
 
-void Snake::move(int direction) {
+void Snake::move(int direction, sf::RenderWindow *window) {
     /**
      * Description:
      *  - creates a new segment and makes it the head pointer
@@ -97,41 +97,43 @@ void Snake::move(int direction) {
     SnakeSegment* segment = new SnakeSegment;
     segment->next =nullptr, segment->prev = nullptr;
 
-//    enum Direction{
-//        left,right,up,down
-//    };
+    sf::Vector2u windowSize = window->getSize();
+    unsigned int windowWidth = windowSize.x;
+    unsigned int windowHeight = windowSize.y;
 
 
     switch (direction) {
         case 0://left
-            segment->pos = sf::Vector2f (head->pos.x-30.f, head->pos.y);
+            segment->pos = sf::Vector2f (head->pos.x-30, head->pos.y);
             break;
         case 1://right
             segment->pos = sf::Vector2f (head->pos.x+30.f, head->pos.y);
-
             break;
         case 2://up
             segment->pos = sf::Vector2f (head->pos.x, head->pos.y-30.f);
-
             break;
         case 3://down
-            segment->pos = sf::Vector2f (head->pos.x+0.f, head->pos.y+30.f);
-
+            segment->pos = sf::Vector2f (head->pos.x, head->pos.y+30.f);
             break;
+    }
 
+    // boundary checks
+    if (segment->pos.x < 0) {
+        segment->pos.x =(float ) windowWidth - 30.f; // move to the other side
+    }
+    else if (segment->pos.x > (float) windowWidth) {
+        segment->pos.x = 0.f; // move to the other side
+    }
 
-
+    if (segment->pos.y < 0) {
+        segment->pos.y = (float )windowHeight - 30.f; // move to the other side
+    }
+    else if (segment->pos.y > (float)windowHeight) {
+        segment->pos.y = 0.f; // move to the other side
     }
     this->pre_pend(segment);
     tail = tail->prev;
     tail->next = nullptr;
-
-
-
-
-    //sf::Vector2f new_pos = sf::Vector2f (temp->pos.x+25, temp->pos.y+25);
-
-
 
 
 }
@@ -139,10 +141,12 @@ void Snake::move(int direction) {
 void Snake::pre_pend(SnakeSegment *segment) {
    head->prev = segment;
    segment->next= head;
-
    head= segment;
 
+}
 
+SnakeSegment *Snake::getHead() const {
+    return head;
 }
 
 
