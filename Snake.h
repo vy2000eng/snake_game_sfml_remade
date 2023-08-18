@@ -30,6 +30,8 @@ private:
     float segment_width ;
     float segment_length;
     sf::Color color;
+    int snake_size;
+
 
 
 public:
@@ -41,12 +43,17 @@ public:
 
     SnakeSegment *getHead() const;
 
+    float getSegmentWidth() const;
+
+    float getSegmentLength() const;
 
     // methods
     void draw(sf::RenderWindow *window);
     void move(int direction,sf::RenderWindow *window) ;
     void add_segment(sf::Vector2f pos);
     void pre_pend(SnakeSegment* segment);
+
+    int getSnakeSize() const;
 
 };
 

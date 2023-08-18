@@ -1,10 +1,13 @@
 # ninja log v5
-1	462	1691716228796036338	CMakeFiles/snake_game_sfml_remade.dir/Game.cpp.o	2185ca38f6baa5c3
-434	496	1691716510833102594	snake_game_sfml_remade	75250ea6af435db8
-1	434	1691716510773103257	CMakeFiles/snake_game_sfml_remade.dir/Snake.cpp.o	935227345fd63133
-0	15	1692136712892524815	build.ninja	fbb7aef44c201fe3
-1	491	1691713375805578200	CMakeFiles/snake_game_sfml_remade.dir/main.cpp.o	b83488f5aa51ba92
-1	454	1692136788337245842	CMakeFiles/snake_game_sfml_remade.dir/main.cpp.o	b83488f5aa51ba92
 1	521	1692136788405246492	CMakeFiles/snake_game_sfml_remade.dir/Game.cpp.o	2185ca38f6baa5c3
-1	521	1692136788405246492	CMakeFiles/snake_game_sfml_remade.dir/Snake.cpp.o	935227345fd63133
 521	582	1692136788465247065	snake_game_sfml_remade	75250ea6af435db8
+1	521	1692136788405246492	CMakeFiles/snake_game_sfml_remade.dir/Snake.cpp.o	935227345fd63133
+0	15	1692137823155135622	build.ninja	fbb7aef44c201fe3
+1	454	1692136788337245842	CMakeFiles/snake_game_sfml_remade.dir/main.cpp.o	b83488f5aa51ba92
+1	503	1692385587757725332	CMakeFiles/snake_game_sfml_remade.dir/main.cpp.o	b83488f5aa51ba92
+1	578	1692385587829725020	CMakeFiles/snake_game_sfml_remade.dir/Game.cpp.o	2185ca38f6baa5c3
+1	454	1692387702973694097	CMakeFiles/snake_game_sfml_remade.dir/main.cpp.o	b83488f5aa51ba92
+1	476	1692387702997694041	CMakeFiles/snake_game_sfml_remade.dir/Game.cpp.o	2185ca38f6baa5c3
+1	489	1692387703009694013	CMakeFiles/snake_game_sfml_remade.dir/SnakeFood.cpp.o	76c245a070fdaa8f
+1	507	1692387703029693966	CMakeFiles/snake_game_sfml_remade.dir/Snake.cpp.o	935227345fd63133
+507	577	1692387703097693806	snake_game_sfml_remade	f0b4680033a29e3d

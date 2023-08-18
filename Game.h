@@ -6,6 +6,7 @@
 #define SNAKE_GAME_SFML_REMADE_GAME_H
 #include "SFML/Graphics.hpp"
 #include "Snake.h"
+#include "SnakeFood.h"
 #define SNAKE_SPAWN_TIMER_MAX = 10
 
 
@@ -17,26 +18,21 @@ private:
       left,right,up,down
     };
 
+
+    SnakeFood food;
+
     Direction dir;
     sf::RenderWindow* window;
     sf::Event event;
     sf::VideoMode vm;
-    //sf::RectangleShape snake;
     int direction;
     Snake snake;
     SnakeSegment start;
+
     int snake_spawn_timer;
-
-
-
     void initialize_variables();
+
     void initialize_window();
-    //void initialize_snake();
-
-
-
-
-
 public:
     Game();
     virtual ~Game();
@@ -47,6 +43,9 @@ public:
     void update_snake();
     void update();
     void render();
+    const Snake &getSnake() const;
+    //void initialize_snake();
+    sf::RenderWindow *getWindow() const;
 
 };
 

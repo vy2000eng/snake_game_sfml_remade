@@ -9,6 +9,8 @@
 Game::Game() {
     this->initialize_variables();
     this->initialize_window();
+    this->food.set_random_food_position(this->window);
+
 
 }
 
@@ -125,6 +127,7 @@ void Game::render_snake() {
      *  - calls snake.draw();
      * */
    this->snake.draw(this->window);
+   this->food.draw(this->window);
 
 
 }
@@ -157,6 +160,14 @@ void Game::update_snake() {
     }else{
         snake_spawn_timer++;
     }
+}
+
+const Snake &Game::getSnake() const {
+    return snake;
+}
+
+sf::RenderWindow *Game::getWindow() const {
+    return window;
 }
 
 

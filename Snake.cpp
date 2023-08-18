@@ -55,6 +55,7 @@ Snake::Snake() {
     head->pos = sf::Vector2f (20.f,20.f);
     head->next = nullptr;
     tail = head;
+    this->snake_size=25;
 
 }
 
@@ -142,11 +143,24 @@ void Snake::pre_pend(SnakeSegment *segment) {
    head->prev = segment;
    segment->next= head;
    head= segment;
+   this->snake_size += 55;
 
 }
 
 SnakeSegment *Snake::getHead() const {
     return head;
+}
+
+int Snake::getSnakeSize() const {
+    return snake_size;
+}
+
+float Snake::getSegmentWidth() const {
+    return segment_width;
+}
+
+float Snake::getSegmentLength() const {
+    return segment_length;
 }
 
 
